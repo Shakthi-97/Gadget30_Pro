@@ -76,15 +76,15 @@ public String insertProject(String pro_code, String pro_category, String pro_nam
 				preparedStmt.execute();
 				con.close();
 				
-				output = "Project details inserted successfully";
+				String newProjects = readProjects(); 
+				output = "{\"status\":\"success\", \"data\": \"" + newProjects + "\"}"; 
 		   }
 		
 		catch (Exception e)
 		
 		 {
-				output = "Error while inserting the projects";
-				
-				System.err.println(e.getMessage());
+			 output = "{\"status\":\"error\", \"data\": \"Error while inserting the projects.\"}"; 
+			 System.err.println(e.getMessage());
 		 }
 		
 
@@ -143,7 +143,7 @@ public String readProjects() {
 	 // Add a row into the html table
 	 		
 	 		//output += "<tr><td>" + project_Id + "</td>";
-	 		output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + project_Id + "'>" 
+	 		output += "<tr><td><input id='hidProIDUpdate' name='hidProIDUpdate' type='hidden' value='" + project_Id + "'>" 
 	                    + project_code + "</td>";
 	 		
 	 		output += "<td>" + project_category + "</td>";
@@ -155,12 +155,11 @@ public String readProjects() {
 	 // buttons 		
 
 	 
-	   output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'</td>"
-		        + "<td><form method='post' action='Projects.jsp'>"
-		        + "<input name='btnRemove' " + " type='submit' value='Remove' class='btn btn-danger'>"
-		        + "<input name='hidItemIDDelete' type='hidden' " + " value='" + project_Id + "'>" + "</form></td></tr>";
-	   
-	   
+	   output += "<td><input name='btnUpdate' type='button' value='Update'" 
+			    + "class='btnUpdate btn btn-secondary'</td>"
+		        + "<td><input name='btnRemove' type='button' value='Remove'"
+			    + "class='btnRemove btn btn-danger' data-proid='"+ project_Id + "'></td> </tr>";
+		     
 	   
 	 }	 	
 		 	
@@ -213,12 +212,13 @@ public String deleteProject(String project_Id) {
 				preparedStmt.execute();
 				con.close();
 				
-				output = "Project details have been deleted Successfully";
+				String newProjects = readProjects(); 
+				output = "{\"status\":\"success\", \"data\": \"" + newProjects + "\"}"; 
 			  }
 			
 			catch (Exception e)
 			{
-				output = "Error while deleting the project.";
+				output = "{\"status\":\"error\", \"data\": \"Error while deleting the project.\"}"; 
 				System.err.println(e.getMessage());
 			}
 			
@@ -260,14 +260,16 @@ public String updateProject(String pro_Id, String pro_code, String pro_category,
 		 //execute the statement
 		 preparedStmt.execute();
 		 con.close();
-		 output = "Project details have been updated successfully";
+		 
+		 String newProjects = readProjects(); 
+		 output = "{\"status\":\"success\", \"data\": \"" + newProjects + "\"}"; 
 		 
 		   }
 	  
 	catch (Exception e)
 	 {
-	     output = "Error while updating the project.";
-	     System.err.println(e.getMessage());
+		output = "{\"status\":\"error\", \"data\": \"Error while updating the project.\"}"; 
+		System.err.println(e.getMessage());
 	 }
 	
 	return output;

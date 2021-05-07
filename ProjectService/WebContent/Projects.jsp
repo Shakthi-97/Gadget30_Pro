@@ -3,62 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%
-
-
-//Save---------------------------------
-if (request.getParameter("projectCode") != null) 
-{ 
-	Project itemObj = new Project(); 
-String stsMsg = ""; 
-
-//Insert--------------------------
-if (request.getParameter("hidItemIDSave") == "") 
-{ 
-stsMsg = itemObj.insertProject(request.getParameter("projectCode"), 
-		request.getParameter("projectCategory"),
-		request.getParameter("projectName"),
-		request.getParameter("projectDescrip"),
-		request.getParameter("projectPrice"),
-		request.getParameter("no_of_pro")); 
-} 
-
-
-
-else//Update----------------------
-{ 
-stsMsg = itemObj.updateProject(request.getParameter("hidItemIDSave"), 
-		request.getParameter("projectCode"),
-		request.getParameter("projectCategory"),
-		request.getParameter("projectName"),
-		request.getParameter("projectDescrip"),
-		request.getParameter("projectPrice"),
-		request.getParameter("no_of_pro")); 
-} 
-session.setAttribute("statusMsg", stsMsg); 
-} 
-
-
-
-//Delete project----------------------------------
-if (request.getParameter("hidItemIDDelete") != null)
-
-  {
-	
-		Project itemObj = new Project();
-		
-		String stsMsg = itemObj.deleteProject(request.getParameter("hidItemIDDelete"));
-		
-		session.setAttribute("statusMsg", stsMsg);
-
-} 
-
-
-
-%>    
-    
-    
-    
+   
     
 <!DOCTYPE html>
 <html>
@@ -71,60 +16,62 @@ if (request.getParameter("hidItemIDDelete") != null)
 </head>
 <body>
 
-<div class="container">
- <div class="row">
- <div class="col">
+ <div class="container"><div class="row"><div class="col-6">
 
 <h1 style="text-align:center">Project Management</h1>
 
-<form id="formItem" name="formItem" method="post" action="Projects.jsp">
+<form id="formProject" name="formProject" method="post">
+
  		Project Code: 
- 	    <input id="projectCode" name="projectCode" type="text"  class="form-control form-control-sm">
+ 	    <input id="projectCode" name="projectCode" type="text"  
+ 	    		class="form-control form-control-sm">
  	    
  		<br> Project Category:
- 		<input id="projectCategory" name="projectCategory" type="text" class="form-control form-control-sm">
+ 		<input id="projectCategory" name="projectCategory" type="text"
+ 				 class="form-control form-control-sm">
  		
  		<br>Project Name:
- 	    <input id="projectName" name="projectName" type="text" class="form-control form-control-sm">
+ 	    <input id="projectName" name="projectName" type="text" 
+ 	    		class="form-control form-control-sm">
  	    
  		<br>Project Description:
- 		<input id="projectDescrip"name="projectDescrip" type="text" class="form-control form-control-sm">
+ 		<input id="projectDescrip"name="projectDescrip" type="text"
+ 				 class="form-control form-control-sm">
  		
  		<br>Project price:
- 		<input id="projectPrice"name="projectPrice" type="text" class="form-control form-control-sm">
- 		<br>
+ 		<input id="projectPrice"name="projectPrice" type="text"
+ 				 class="form-control form-control-sm">
+ 		
  		
  		<br>No of Projects Available:
- 		<input id="no_of_pro"name="no_of_pro" type="text" class="form-control form-control-sm">
- 		<br>
+ 		<input id="no_of_pro"name="no_of_pro" type="text"
+ 				 class="form-control form-control-sm">
  		
  		<br>
  		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary"> 
- 		<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
+ 		<input type="hidden" id="hidProIDSave" name="hidProIDSave" value="">
  		
 </form>
 
 
 
-
-<div id="alertSuccess" class="alert alert-success">
-<% out.print(session.getAttribute("statusMsg"));%>
-</div>
-<div id="alertError" class="alert alert-danger">
-<% out.print(session.getAttribute("statusMsg"));%>
-</div>
+<!-- ---Alert Messagaes  -->
+<div id="alertSuccess" class="alert alert-success"></div>
+<div id="alertError" class="alert alert-danger"></div>
 
 
+<br>
 
-		<br>
-<%
+<div id="divProjectsGrid">
+	<%
 		Project itemObj = new Project();
  		out.print(itemObj.readProjects());
-%>
+	%>
 
 </div>
-</div>
-</div>
+
+</div></div></div>
+
 
 
 </body>
