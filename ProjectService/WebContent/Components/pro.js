@@ -195,5 +195,12 @@ function validateProjectForm() {
 		return "Insert available no of projects."; 
 	} 
 	
+	//is numerical value
+	var tmpPro = $("#no_of_pro").val().trim(); 
+	if (!$.isNumeric(tmpPro)) {
+ 
+		return "Insert a numerical value for available projects."; 
+	}
+	
 	return true; 
 }

@@ -20,15 +20,25 @@
 
 <h1 style="text-align:center">Project Management</h1>
 
-<form id="formProject" name="formProject" method="post">
+<form id="formProject" name="formProject">
 
  		Project Code: 
  	    <input id="projectCode" name="projectCode" type="text"  
  	    		class="form-control form-control-sm">
  	    
  		<br> Project Category:
- 		<input id="projectCategory" name="projectCategory" type="text"
+ 		<select input id="projectCategory" name="projectCategory" type="text"
  				 class="form-control form-control-sm">
+ 		
+ 		<option selected> </option>
+					<option value="Agriculture">Agriculture</option>
+					<option value="Finacial">Finacial</option>
+					<option value="Education">Education</option>
+					<option value="Industrial">Industrial</option>
+					<option value="HotelManagement">Hotel Management</option>
+					<option value="InventoryManagement">Inventory Management</option>
+				</select><br> 	
+ 				 
  		
  		<br>Project Name:
  	    <input id="projectName" name="projectName" type="text" 
@@ -48,8 +58,10 @@
  				 class="form-control form-control-sm">
  		
  		<br>
- 		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary"> 
- 		<input type="hidden" id="hidProIDSave" name="hidProIDSave" value="">
+ 		<input id="btnSave" name="btnSave" type="button" value="Save"
+ 				 class="btn btn-primary"> 
+ 		<input type="hidden" id="hidProIDSave" 
+ 				 name="hidProIDSave" value="">
  		
 </form>
 
