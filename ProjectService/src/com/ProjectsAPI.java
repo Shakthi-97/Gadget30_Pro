@@ -51,8 +51,7 @@ public class ProjectsAPI extends HttpServlet {
 				request.getParameter("projectName"), 
 				request.getParameter("projectDescrip"),
 				request.getParameter("projectPrice"), 
-				request.getParameter("no_of_pro"));
-		
+				request.getParameter("no_of_pro"));	
 		response.getWriter().write(output);
 		
 		
@@ -73,8 +72,7 @@ public class ProjectsAPI extends HttpServlet {
 					paras.get("projectName").toString(), 
 					paras.get("projectDescrip").toString(),
 					paras.get("projectPrice").toString(), 
-					paras.get("no_of_pro").toString());
-		
+					paras.get("no_of_pro").toString());		
 		response.getWriter().write(output);
 	}
 
@@ -98,12 +96,9 @@ public class ProjectsAPI extends HttpServlet {
 		 
 					Scanner scanner = new Scanner(request.getInputStream(), "UTF-8"); 
 					String queryString = scanner.hasNext() ? scanner.useDelimiter("\\A").next() : "";  
-		 
 					scanner.close(); 
 					String[] params = queryString.split("&"); 
-					for (String param : params)  { 
-		 
-			
+					for (String param : params)  { 	
 						String[] p = param.split("=");
 						map.put(p[0], p[1]); 
 					} 
@@ -114,5 +109,5 @@ public class ProjectsAPI extends HttpServlet {
 				return map; 
 			}
 
-
+		
 }

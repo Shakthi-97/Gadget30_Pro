@@ -1,7 +1,11 @@
 package com;
 
 import java.sql.*;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Project {
 
@@ -112,14 +116,16 @@ public String readProjects() {
 				
 	 // Prepare the html table to be displayed
 				
-	// output = "<table border='1'><tr><th>Project ID</th>"	 
-	 output = "<table border='1'> <tr><th>Project Code</th>"
+
+	 output = "<table border='1' align='center' cellpadding='5' cellspacing='5' border='1'> <tr>"
+			 + "<th>Project Code</th>"
 			 + "<th>Project Category</th>" 
 			 + "<th>Project Name</th>"
 			 + "<th>Project Description</th>"
 			 + "<th>Project Price</th>"
 			 + "<th>Available Projects</th>"
-			 + "<th>Update</th><th>Remove</th></tr>";
+			 + "<th>Update</th>" + "<th>Remove</th></tr>";
+			 
 	 
 	 	String query = "select * from products";
 	 	Statement stmt = con.createStatement();
@@ -142,26 +148,25 @@ public String readProjects() {
 	 		
 	 // Add a row into the html table
 	 		
-	 		//output += "<tr><td>" + project_Id + "</td>";
-	 		output += "<tr><td><input id='hidProIDUpdate' name='hidProIDUpdate' type='hidden' value='" + project_Id + "'>" 
-	                    + project_code + "</td>";
-	 		
+	 		output += "<tr><td><input id='hidProIDUpdate' name='hidProIDUpdate' type='hidden' value='" 
+	 				+ project_Id + "'>" + project_code + "</td>";
 	 		output += "<td>" + project_category + "</td>";
 	 		output += "<td>" + project_name + "</td>"; 
 	 		output += "<td>" + project_descrip + "</td>";
 	 		output += "<td>" + project_price + "</td>";
 	 		output += "<td>" + no_of_projects + "</td>";
 	 		
+	 		
 	 // buttons 		
 
 	 
-	   output += "<td><input name='btnUpdate' type='button' value='Update'" 
-			    + "class='btnUpdate btn btn-secondary'</td>"
+	   output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"  
 		        + "<td><input name='btnRemove' type='button' value='Remove'"
-			    + "class='btnRemove btn btn-danger' data-proid='"+ project_Id + "'></td> </tr>";
-		     
+			    + "class='btnRemove btn btn-danger' data-proid='"+ project_Id + "'>" + "</td></tr>";
 	   
-	 }	 	
+	   
+	 }	 
+	 	
 		 	
 	 con.close(); 
 	
@@ -264,7 +269,7 @@ public String updateProject(String pro_Id, String pro_code, String pro_category,
 		 String newProjects = readProjects(); 
 		 output = "{\"status\":\"success\", \"data\": \"" + newProjects + "\"}"; 
 		 
-		   }
+ }
 	  
 	catch (Exception e)
 	 {

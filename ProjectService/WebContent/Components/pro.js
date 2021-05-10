@@ -21,7 +21,7 @@ $(document).on("click", "#btnSave", function(event){
 		//Form validation-------------------
 		var status = validateProjectForm(); 
 		if (status != true) {
-   
+
 			$("#alertError").text(status); 
 			$("#alertError").show(); 
 			return; 
@@ -31,21 +31,19 @@ $(document).on("click", "#btnSave", function(event){
 		var type = ($("#hidProIDSave").val() == "") ? "POST" : "PUT"; 
 		
 		//sending data to the DC Bus
+		
 		$.ajax({ 
-  
-			url : "ProjectsAPI", 
-			type : type, 
-			data : $("#formProject").serialize(), 
-			dataType : "text", 
-			complete : function(response, status) { 
-				onProjectSaveComplete(response.responseText, status); 
+				url : "ProjectsAPI", 
+				type : type, 
+				data : $("#formProject").serialize(), 
+				dataType : "text", 
+				complete : function(response, status) { 
+						onProjectSaveComplete(response.responseText, status); 
 			  } 
 		
 		}); 
  
  });
-
-
 
 
 
@@ -82,17 +80,33 @@ function onProjectSaveComplete(response, status){
 
 
 
+//UPDATE==========================================
+$(document).on("click", ".btnUpdate", function(event) { 
+ 
+	$("#hidProIDSave").val($(this).closest("tr").find('#hidProIDUpdate').val()); 
+	$("#projectCode").val($(this).closest("tr").find('td:eq(0)').text()); 
+	$("#projectCategory").val($(this).closest("tr").find('td:eq(1)').text()); 
+	$("#projectName").val($(this).closest("tr").find('td:eq(2)').text()); 
+	$("#projectDescrip").val($(this).closest("tr").find('td:eq(3)').text()); 
+	$("#projectPrice").val($(this).closest("tr").find('td:eq(4)').text()); 
+	$("#no_of_pro").val($(this).closest("tr").find('td:eq(5)').text()); 
+
+});
+
+
+
+
 //DELETE implementation
 $(document).on("click", ".btnRemove", function(event) {
 	
 	$.ajax({
-		url : "ProjectsAPI",
-		type : "DELETE",
-		data : "project_Id=" + $(this).data("proid"),
-		dataType : "text",
-		complete : function(response, status) {
-			onProjectDeleteComplete(response.responseText, status);
-		}
+			url : "ProjectsAPI",
+			type : "DELETE",
+			data : "project_Id=" + $(this).data("proid"),
+			dataType : "text",
+			complete : function(response, status) {
+					onProjectDeleteComplete(response.responseText, status);
+			}
 	});
 	
 });
@@ -127,21 +141,6 @@ function onProjectDeleteComplete(response, status) {
 		} 
 }
 
-
-
-
-// UPDATE==========================================
-$(document).on("click", ".btnUpdate", function(event) 
-{ 
- $("#hidProIDSave").val($(this).closest("tr").find('#hidProIDUpdate').val()); 
- $("#projectCode").val($(this).closest("tr").find('td:eq(0)').text()); 
- $("#projectCategory").val($(this).closest("tr").find('td:eq(1)').text()); 
- $("#projectName").val($(this).closest("tr").find('td:eq(2)').text()); 
- $("#projectDescrip").val($(this).closest("tr").find('td:eq(3)').text()); 
- $("#projectPrice").val($(this).closest("tr").find('td:eq(4)').text()); 
- $("#no_of_pro").val($(this).closest("tr").find('td:eq(5)').text()); 
-
-});
 
 
 
