@@ -117,7 +117,7 @@ public String readProjects() {
 	 // Prepare the html table to be displayed
 				
 
-	 output = "<table border='1' align='center' cellpadding='5' cellspacing='5' border='1'> <tr>"
+	 output = "<table border='1' align='center' cellpadding='7' cellspacing='5' border='1'class='table table-hover table-dark'> <tr>"
 			 + "<th>Project Code</th>"
 			 + "<th>Project Category</th>" 
 			 + "<th>Project Name</th>"

@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-   
     
 <!DOCTYPE html>
 <html>
@@ -13,16 +12,17 @@
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script type="text/javascript" src="Components/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="Components/pro.js"></script>
+<link rel="stylesheet" href="Views/pro.css">
 </head>
 <body>
 
- <div class="row container" style="margin:0">
-		<div class="jumbotron col-12">
-
-<h1 style="text-align:center">Project Management</h1>
-</div>
-
-<div class="col-6">
+ <div class="row container" style="margin:0"> <div class="jumbotron col-12">
+		
+	<h1 style="text-align:center">Project Management</h1>
+	   </div>
+	   
+<div class="col-8">
+<div class="cen">
 
 <form id="formProject" name="formProject" method="post">
 
@@ -68,17 +68,20 @@
  				 name="hidProIDSave" value="">
  		
 </form>
-
+</div>
 <br>
 
 <!-- ---Alert Messagaes  -->
+
+<div class="alert">
 <div id="alertSuccess" class="alert alert-success"></div>
 <div id="alertError" class="alert alert-danger"></div>
 
 </div>
+</div>
 
 
-<div id="divProjectsGrid" class="col-10">
+<div id="divProjectsGrid" class="col-12">
 	<%
 		Project itemObj = new Project();
  		out.print(itemObj.readProjects());
@@ -87,7 +90,9 @@
 </div>
 
 <div style="height:60px">
-	</div> </div>
+
+	</div>
+ </div> 
 
 </body>
 </html>

@@ -39,6 +39,7 @@ $(document).on("click", "#btnSave", function(event){
 				dataType : "text", 
 				complete : function(response, status) { 
 						onProjectSaveComplete(response.responseText, status); 
+				str.replace(/%20/g, " ");
 			  } 
 		
 		}); 
@@ -153,6 +154,11 @@ function validateProjectForm() {
  
 		return "Insert Project Code."; 
 	} 
+	
+	if($("#projectCode").val().trim() > "8")
+	{
+		return "Project code should be within 7 characters";
+	}
 	
 	//CATEGORY
 	if ($("#projectCategory").val().trim() == "") {

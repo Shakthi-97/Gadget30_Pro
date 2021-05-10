@@ -1,0 +1,24 @@
+
+.jumbotron {
+  background-color: #C0C0C0;
+  padding-top: 1%;
+  margin-left: 5%;
+  text-shadow: 2.5px 2.5px Gray;
+ 
+}
+
+.cen {
+     margin-left: 10%;
+     align-content: center;
+     color: #400080;
+     font-weight: 700;
+}
+
+.col-12{
+	margin-left:5%;
+	
+}
+.alert{
+	
+	margin-left: 5%;
+}
